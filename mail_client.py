@@ -33,24 +33,50 @@ def send_mail(recipient: str, sender: str, subject: str, body: str) -> bool:
 
 def get_inbox(recipient: str) -> None:
     """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    Fetch mails linked to a specific recipient from a remote server using URL. The response is in JSON format and will be printed out.
+    
+    Args:
+    	recipient (str): The recipient of the inbox we wish to retrieve
+    	
+    Returns:
+    	none.
+    
     """
     response = requests.get(f'{SERVER}/mail/inbox/{recipient}')
     pprint.pprint(response.json())
 
 def get_sent(sender: str) -> None:
     """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    Fetch sent mails from a specific sender from a remote server using URL. The response is in JSON format and will be printed out.
+    
+    Args:
+    	sender (str): The sender of the emails we wish to retrieve
+    	
+    Returns:
+    	none.
     """
     response = requests.get(f'{SERVER}/mail/sent/{sender}')
     pprint.pprint(response.json())
 
 def get_mail(mail_id: str) -> None:
     """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    Fetch a specific email linked to a mail_id from a remote server using URL. The response will be in JSON format and will be printed out.
+    
+    Args:
+    	mail_id (str): The unique ID of the mail we wish to retrive
+    
+    Returns:
+    	none
     """
     response = requests.get(f'{SERVER}/mail/{mail_id}')
     pprint.pprint(response.json())
 
 def delete_mail(mail_id: str) -> None:
     """TODO: fill out this docstring (using the send_mail docstring as a guide)
+    Delete a specific email linked to a mail_id using the delete command at a remote server using URL. The response is printed out.
+    
+    Args:
+    	mail_id (str): The unique ID of the mail we wish to delete
     """
     response = requests.delete(f'{SERVER}/mail/{mail_id}')
     pprint.pprint(response.json())
